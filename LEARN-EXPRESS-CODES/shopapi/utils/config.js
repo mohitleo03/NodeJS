@@ -1,0 +1,26 @@
+module.exports = {
+    SCHEMAS:{
+        USERS:'users'
+    },
+    STATUS_CODES:{
+        SUCCESS:200,
+        SERVER_CRASH:500,
+        FILE_NOT_FOUND:404,
+        NOT_FOUND:404
+    },
+    ROUTES:{
+        ROOT:'/',
+        PAYMENTS:{
+            PAY:'/pay'
+        },
+        USER:{
+            LOGIN:'/login',
+            REGISTER:'/register',
+            PROFILE:'/show'
+        },
+        ORDER:{
+            DETAILS:'/orders',
+            HISTORY:'/history'
+        }
+    }
+}

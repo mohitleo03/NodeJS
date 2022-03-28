@@ -1,0 +1,34 @@
+version: '3.9'
+
+services:
+  db:
+    image: mongo:5.0.6
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    expose:
+      - 5432
+
+  myapp:
+    build: .
+   # image: myapp
+    command: npm start
+    environment:
+      APP_DB_HOST: ${DB_URL}
+    expose: 
+      - 8000
+    depends_on:
+      - db
+
+  myapp-tests:
+    # image: myapp
+    build: .
+    command: npm run test
+        -wait tcp://db:5432 -wait tcp://myapp:8000 -timeout 10s
+        bash -c "node db/init.js && npm test"
+    environment:
+      APP_URL: https://localhost:8000
+      APP_DB_HOST: mongodb+srv://namitkumar:kumar@cluster0.7hy61.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+    depends_on:
+      - db
+      - myapp

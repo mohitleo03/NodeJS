@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>AJAX NEED?</h1>
+    <button onclick="call()">Click Here</button>
+    <script>
+        function show(){
+            console.log("show function called");
+        }
+        // function display(){
+        //     for(var i=0;i<100000;i++){
+        //         for(var j=0;j<100000;j++){
+        //             var k=i+j;
+        //         }
+        //     }
+        //     console.log("show display called");
+        // }
+        function display(){
+            console.log("display function called");
+            var http = new XMLHttpRequest();
+            // ready state - 0,1,2,3,4
+            // 0 - unsent
+            // 1 - opened - open function called
+            // 2 - header_received - send function called
+            // 3 - loading
+            // 4 - done
+            http.onreadystatechange  = function(){
+                console.log(http.readyState,http.status);
+                if( http.readyState == 4 && http.status == 200){
+                    console.log("display function executed",http.responseText);
+                }
+            }
+            http.open('get','http://api.openweathermap.org/data/2.5/weather?q=delhi&appid=a698792233fef68242d4add42df824f1');
+            http.send();
+        }
+        function sendMessage(){
+            console.log("show sendMessage called");
+        }
+        function call(){
+            show();
+            display();
+            sendMessage();
+        }
+    </script>
+</body>
+</html>

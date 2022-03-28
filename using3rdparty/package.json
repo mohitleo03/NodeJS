@@ -1,0 +1,19 @@
+{
+  "name": "using3rdparty",
+  "version": "1.0.0",
+  "description": "this is for using third party npm things",
+  "main": "six.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "3rd",
+    "party",
+    "keyword"
+  ],
+  "author": "Mohit Malik",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}

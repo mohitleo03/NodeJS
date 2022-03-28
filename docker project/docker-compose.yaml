@@ -1,0 +1,22 @@
+services:
+  backend:
+    container_name: backendExec
+    build:
+      context: .
+    networks:
+      - express-mongo
+    depends_on:
+      - mongodb
+  mongodb:
+    container_name: mongodbs
+    image: mongo:5.0.6
+    restart: always
+    networks:
+      - express-mongo
+    volumes:
+      - data:/data/db
+volumes:
+  data:
+  appLogs:
+networks:
+  express-mongo:
